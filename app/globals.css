@@ -126,7 +126,7 @@ body {
   }
 
   .total-balance-chart {
-    @apply flex size-full max-w-[100px] items-center sm:max-w-[120px];
+    @apply max-w-[100px]  sm:max-w-[120px];
   }
 
   .total-balance-label {
@@ -158,8 +158,8 @@ body {
   }
 
   /* Right sidebar */
-  .right-sidebar {
-    @apply no-scrollbar hidden h-screen max-h-screen flex-col border-l border-gray-200 xl:flex w-[355px] xl:overflow-y-scroll !important;
+  .left-sidebar {
+    @apply no-scrollbar hidden h-screen max-h-screen flex-col border-r border-gray-200 xl:flex w-[355px] xl:overflow-y-scroll !important;
   }
 
   .profile-banner {
@@ -171,7 +171,7 @@ body {
   }
 
   .profile-img {
-    @apply flex-center absolute -top-8 size-24 rounded-full bg-gray-100 border-8 border-white p-2 shadow-profile;
+    @apply flex items-center justify-center absolute -top-12 size-24 rounded-full bg-gray-200 border-8 border-white p-2 shadow-profile;
   }
 
   .profile-details {
@@ -183,7 +183,7 @@ body {
   }
 
   .profile-email {
-    @apply text-16 font-normal text-gray-600;
+    @apply text-[14px] font-normal text-gray-400 mt-1;
   }
 
   .banks {
@@ -230,11 +230,11 @@ body {
   }
 
   .bank-card_content {
-    @apply relative z-10 flex size-full max-w-[228px] flex-col justify-between rounded-l-[20px] bg-gray-700 bg-bank-gradient px-5 pb-4 pt-5;
+    @apply relative z-10 flex size-full max-w-[228px] flex-col justify-between rounded-r-[20px] bg-gray-700 bg-bank-gradient px-5 pb-4 pt-5;
   }
 
   .bank-card_icon {
-    @apply flex size-full flex-1 flex-col items-end justify-between rounded-r-[20px] bg-bank-gradient bg-cover bg-center bg-no-repeat py-5 pr-5;
+    @apply flex flex-col items-center justify-between rounded-l-[20px] bg-bank-gradient bg-cover bg-center bg-no-repeat py-5 px-3;
   }
 
   /* Bank Info */
@@ -257,7 +257,7 @@ body {
   }
 
   .mobilenav-sheet_close {
-    @apply flex gap-3 items-center p-4 rounded-lg w-full max-w-60;
+    @apply flex gap-3 items-center p-4 rounded-lg;
   }
 
   /* PlaidLink */
@@ -369,11 +369,11 @@ body {
 
   /* Sidebar */
   .sidebar {
-    @apply sticky left-0 top-0 flex h-screen w-fit flex-col  justify-between border-r border-gray-200 bg-white pt-8 text-white max-md:hidden sm:p-4 xl:p-6 2xl:w-[355px];
+    @apply sticky left-0 top-0 flex h-screen w-fit flex-col  justify-between border-l border-gray-200 bg-white pt-8 text-white max-md:hidden sm:p-4 xl:p-6 2xl:w-[355px];
   }
 
   .sidebar-logo {
-    @apply 2xl:text-26 font-ibm-plex-serif text-[26px] font-bold text-black-1 max-xl:hidden;
+    @apply 2xl:text-26 text-[26px] font-bold text-black-1 max-xl:hidden;
   }
 
   .sidebar-link {
