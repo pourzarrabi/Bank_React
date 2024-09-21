@@ -1,13 +1,10 @@
 import HeaderBox from "@/components/HeaderBox";
 import LeftSidebar from "@/components/LeftSidebar";
 import TotalBalanceBox from "@/components/TotalBalanceBox";
+import { getLoggedInUser } from "@/lib/actions/user.actions";
 
-const Home = () => {
-  const loggedIn = {
-    firstName: "حمیدرضا",
-    lastName: "سروش",
-    email: "pourzarrabi@gmail.com",
-  };
+const Home = async () => {
+  const loggedIn = await getLoggedInUser();
 
   return (
     <section className='home'>
@@ -16,7 +13,7 @@ const Home = () => {
           <HeaderBox
             type='greeting'
             title='عزیز، خوش آمدید.'
-            user={loggedIn?.firstName || "Guest"}
+            user={loggedIn?.name || "Guest"}
             subtext='به حساب های خود دسترسی داشته باشید و آنها را مدیریت کنید.'
           />
 

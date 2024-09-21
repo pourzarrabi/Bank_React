@@ -2,6 +2,7 @@
 import { type ClassValue, clsx } from "clsx";
 import qs from "query-string";
 import { twMerge } from "tailwind-merge";
+import { z } from "zod";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -193,3 +194,43 @@ export const getTransactionStatus = (date: Date) => {
 
   return date > twoDaysAgo ? "Processing" : "Success";
 };
+
+export const authFormSchema = (type: string) =>
+  z.object({
+    // sign-up
+    firstName:
+      type === "sign-in"
+        ? z.string().optional()
+        : z.string({ message: "نام ضروری میباشد." }),
+    lastName:
+      type === "sign-in"
+        ? z.string().optional()
+        : z.string({ message: "نام خانوادگی ضروری میباشد." }),
+    address:
+      type === "sign-in"
+        ? z.string().optional()
+        : z
+            .string({ message: "آدرس ضروری میباشد." })
+            .max(50, { message: "حداکثر 50 کاراکتر مجاز میباشد." }),
+    city:
+      type === "sign-in"
+        ? z.string().optional()
+        : z.string({ message: "شهر ضروری میباشد." }),
+    postalCode:
+      type === "sign-in"
+        ? z.string().optional()
+        : z.string({ message: "کد پستی ضروری میباشد." }).min(3),
+    dob:
+      type === "sign-in"
+        ? z.string().optional()
+        : z.string({ message: "تاریخ تولد ضروری میباشد." }).min(3),
+    ssn:
+      type === "sign-in"
+        ? z.string().optional()
+        : z.string({ message: "کد ملی ضروری میباشد." }).min(3),
+    // both
+    email: z.string().email({ message: "ایمیل اشتباه است." }),
+    password: z
+      .string()
+      .min(8, { message: "پسورد باید بیشتر از 8 کاراکتر باشد." }),
+  });
