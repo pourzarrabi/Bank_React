@@ -22,6 +22,7 @@ import { authFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { signIn, signUp } from "@/lib/actions/user.actions";
+import PlaidLink from "./PlaidLink";
 
 const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter();
@@ -42,7 +43,19 @@ const AuthForm = ({ type }: { type: string }) => {
     setIsLoading(true);
     try {
       if (type === "sign-up") {
-        const newUser = await signUp(data);
+        const userData = {
+          firstName: data.firstName!,
+          lastName: data.lastName!,
+          address1: data.address1!,
+          state: data.state!,
+          city: data.city!,
+          postalCode: data.postalCode!,
+          dateOfBirth: data.dateOfBirth!,
+          ssn: data.ssn!,
+          email: data.email,
+          password: data.password,
+        };
+        const newUser = await signUp(userData);
         setUser(newUser);
       }
       if (type === "sign-in") {
@@ -61,17 +74,6 @@ const AuthForm = ({ type }: { type: string }) => {
 
   return (
     <section className='auth-form'>
-      <header className='flex flex-col gap-3 items-center'>
-        <Link href='/' className='flex items-center cursor-pointer gap-2'>
-          <Image
-            src='/icons/logo.svg'
-            width={40}
-            height={40}
-            alt='Yekta Bank Logo'
-          />
-          <h1 className='text-[25px] font-bold text-black-1'>بانک یکتا</h1>
-        </Link>
-      </header>
       <div className='flex flex-col'>
         <h1 className='text-24 font-semibold text-gray-900'>
           {user ? "وارد پنل شوید" : type === "sign-in" ? "ورود" : "ثبت نام"}
@@ -84,7 +86,9 @@ const AuthForm = ({ type }: { type: string }) => {
       </div>
 
       {user ? (
-        <div className='flex flex-col gap-4'></div>
+        <div className='flex flex-col gap-4'>
+          <PlaidLink user={user} variant='primary' />
+        </div>
       ) : (
         <>
           <Form {...form}>
@@ -108,16 +112,22 @@ const AuthForm = ({ type }: { type: string }) => {
 
                   <CustomInput
                     control={form.control}
-                    name='address'
+                    name='address1'
                     label='آدرس'
                     placeholder='آدرس خود را وارد نمایید'
+                  />
+                  <CustomInput
+                    control={form.control}
+                    name='state'
+                    label='ایالت'
+                    placeholder='مانند: NY'
                   />
                   <div className='flex items-center justify-between gap-4'>
                     <CustomInput
                       control={form.control}
                       name='city'
                       label='شهر'
-                      placeholder='مانند: تهران'
+                      placeholder='مانند: New York'
                     />
                     <CustomInput
                       control={form.control}
@@ -129,15 +139,15 @@ const AuthForm = ({ type }: { type: string }) => {
                   <div className='flex items-center justify-between gap-4'>
                     <CustomInput
                       control={form.control}
-                      name='dob'
+                      name='dateOfBirth'
                       label='تاریخ تولد'
-                      placeholder='مانند: 1345/12/29'
+                      placeholder='مانند: 30-01-1999'
                     />
                     <CustomInput
                       control={form.control}
                       name='ssn'
-                      label='کد ملی'
-                      placeholder='کد ملی'
+                      label='کد شهروندی'
+                      placeholder='کد شهروندی'
                     />
                   </div>
                 </>

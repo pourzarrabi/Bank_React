@@ -206,12 +206,16 @@ export const authFormSchema = (type: string) =>
       type === "sign-in"
         ? z.string().optional()
         : z.string({ message: "نام خانوادگی ضروری میباشد." }),
-    address:
+    address1:
       type === "sign-in"
         ? z.string().optional()
         : z
             .string({ message: "آدرس ضروری میباشد." })
             .max(50, { message: "حداکثر 50 کاراکتر مجاز میباشد." }),
+    state:
+      type === "sign-in"
+        ? z.string().optional()
+        : z.string({ message: "ایالت ضروری میباشد." }).max(2),
     city:
       type === "sign-in"
         ? z.string().optional()
@@ -220,14 +224,14 @@ export const authFormSchema = (type: string) =>
       type === "sign-in"
         ? z.string().optional()
         : z.string({ message: "کد پستی ضروری میباشد." }).min(3),
-    dob:
+    dateOfBirth:
       type === "sign-in"
         ? z.string().optional()
         : z.string({ message: "تاریخ تولد ضروری میباشد." }).min(3),
     ssn:
       type === "sign-in"
         ? z.string().optional()
-        : z.string({ message: "کد ملی ضروری میباشد." }).min(3),
+        : z.string({ message: "کد شهروندی ضروری میباشد." }).min(3),
     // both
     email: z.string().email({ message: "ایمیل اشتباه است." }),
     password: z
