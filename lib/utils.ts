@@ -4,6 +4,10 @@ import qs from "query-string";
 import { twMerge } from "tailwind-merge";
 import { z } from "zod";
 
+export const randomId = () => {
+  return "id-" + Date.now() + "-" + Math.floor(Math.random() * 10000);
+};
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }

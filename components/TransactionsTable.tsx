@@ -12,6 +12,7 @@ import {
   formatAmount,
   formatDateTime,
   getTransactionStatus,
+  randomId,
   removeSpecialCharacters,
 } from "@/lib/utils";
 
@@ -52,7 +53,7 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
 
           return (
             <TableRow
-              key={t.$id}
+              key={randomId()}
               className={`${
                 isDebit || amount[0] === "-"
                   ? "bg-red-50 hover:bg-red-100"
@@ -73,7 +74,9 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
                     : "text-green-700"
                 }`}
               >
-                {isDebit ? `-${amount}` : isCredit ? amount : amount}
+                {isDebit || amount[0] === "-"
+                  ? `-${amount.replace("-", "")}`
+                  : `+${amount}`}
               </TableCell>
               <TableCell>
                 <CategoryBadge category={status} />
