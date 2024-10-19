@@ -163,7 +163,7 @@ body {
   }
 
   .profile-banner {
-    @apply h-[120px] w-full bg-gradient-mesh bg-cover bg-no-repeat;
+    @apply min-h-[120px] w-full bg-gradient-mesh bg-cover bg-no-repeat;
   }
 
   .profile {
@@ -226,7 +226,7 @@ body {
 
   /* Bank Card */
   .bank-card {
-    @apply relative flex h-[190px] w-full max-w-[320px] justify-between rounded-[20px] border border-white bg-bank-gradient shadow-creditCard backdrop-blur-[6px];
+    @apply flex h-[190px];
   }
 
   .bank-card_content {
